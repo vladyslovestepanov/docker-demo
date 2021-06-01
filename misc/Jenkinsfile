@@ -16,4 +16,8 @@ node {
        def app = docker.build("vladstepanov/docker-nodejs-demo:${commit_id}", '.').push()
      }
    }
+   stage('Push image') {
+            docker.withRegistry('https://registry-1.docker.io/v2/', 'docker-hub-credentials') {
+              dockerImage.push()
+    }
 }
